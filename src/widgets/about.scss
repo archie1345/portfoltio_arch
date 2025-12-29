@@ -1,0 +1,87 @@
+@import '../variables/variables.scss';
+
+.about {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  overflow: hidden;
+}
+
+/* TITLE */
+.about-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15vw;
+  font-weight: 700;
+  z-index: 2;
+}
+
+
+
+.about-letter {
+  display: inline-block;
+}
+
+/* DARK BOX */
+.about-dark-box {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-content-inner {
+  width: 100%;
+  max-width: 1600px;
+  padding: 80px 100px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 420px 1.2fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-image-col img {
+  width: 100%;
+  max-width: 400px;
+  filter: grayscale(100%);
+  object-fit: cover;
+}
+
+.about-text-main {
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 400;
+
+  p {
+    margin-bottom: 24px;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.about-text-secondary {
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: 0.85;
+
+  p {
+    margin-bottom: 24px;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+

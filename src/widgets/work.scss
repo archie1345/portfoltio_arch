@@ -1,0 +1,33 @@
+@import '../variables/variables.scss';
+
+.works-section {
+  padding: 100px 0;
+
+  .work-item {
+    border-top: 1px solid $color-black;
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+    cursor: pointer;
+
+    &:last-child {
+      border-bottom: 1px solid $color-black;
+    }
+
+    &:hover {
+      background-color: $color-gray;
+    }
+
+    .work-name {
+      font-size: 80px;
+      font-weight: 300;
+    }
+
+    .work-hover-text {
+      font-size: 16px;
+      font-family: $font-mono;
+    }
+  }
+}

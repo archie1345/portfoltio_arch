@@ -1,0 +1,149 @@
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import './about.scss';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const splitText = (text) =>
+  text.split('').map((char, i) => (
+    <span key={i} className="about-letter">
+      {char === ' ' ? '\u00A0' : char}
+    </span>
+  ));
+
+const About = () => {
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const boxRef = useRef(null);
+  const contentRef = useRef(null);
+
+
+  useGSAP(() => {
+  const letters = titleRef.current.querySelectorAll('.about-letter');
+
+  gsap.set(letters, { y: 120, opacity: 0 });
+  gsap.set(titleRef.current, { opacity: 1 });
+  gsap.set(boxRef.current, { autoAlpha: 0, y: 80 });
+  gsap.set(contentRef.current, { opacity: 0, y: 20 });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: sectionRef.current,
+      start: 'top top',
+      end: '+=400%',
+      scrub: 1,
+      pin: true,
+    },
+  });
+
+  tl.to(letters, {
+    y: 0,
+    opacity: 1,
+    stagger: 0.06,
+    ease: 'power3.out',
+    duration: 1.2,
+  })
+
+  .to({}, { duration: 0.8 })
+
+  .to(titleRef.current, {
+    opacity: 0,
+    y: -60,
+    duration: 1,
+    ease: 'power2.inOut',
+  })
+
+  .to(boxRef.current, {
+    autoAlpha: 1,
+    y: 0,
+    duration: 1.4,
+    ease: 'power3.out',
+  })
+
+  .to(contentRef.current, {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: 'power2.out',
+  }, '-=0.6')
+
+  .to({}, { duration: 1.5 })
+
+  .to(boxRef.current, {
+    autoAlpha: 0,
+    y: -80,
+    duration: 1.2,
+    ease: 'power2.inOut',
+  });
+
+}, { scope: sectionRef });
+
+
+  return (
+    <section className="about" ref={sectionRef} id="about">
+      <h2 className="about-title" ref={titleRef}>
+        {splitText('ABOUT ME')}
+      </h2>
+
+      <div className="about-dark-box" ref={boxRef}>
+         <div className="about-content-inner" ref={contentRef}>
+          <div className="about-grid">
+
+            <div className="about-image-col">
+              <img
+                src="/your-real-image.jpg"
+                alt="Portrait"
+              />
+            </div>
+
+            {/* CENTER — MAIN BIO */}
+            <div className="about-text-main">
+              <p>
+                <strong>Hello</strong>, I’m Archie Saskara!<br />
+                I’m a <strong>Web and Multiplatform Developer</strong> and an
+                <strong> Information Systems student</strong> from Indonesia,
+                currently living in Kota Malang.
+              </p>
+
+              <p>
+                I enjoy building applications for the web and across platforms,
+                working mainly with <strong>React (Vite), Flutter, Firebase,
+                and MongoDB</strong>. I’m especially interested in turning ideas
+                into functional products through clean structure, clear logic,
+                and thoughtful user experience.
+              </p>
+
+              <p>
+                I’m currently pursuing a <strong>Bachelor’s degree (S1)</strong>
+                in Information Systems at Brawijaya University, Faculty of
+                Computer Science, in the International Class.
+              </p>
+            </div>
+
+            <div className="about-text-secondary">
+              <p>
+                For me, software development is a process full of puzzles and
+                challenges. It trains me to pay attention to details,
+                understand systems deeply, and solve problems through errors
+                and experimentation.
+              </p>
+
+              <p>
+                Outside of coding, I’m a <strong>Taekwondo athlete</strong> and
+                actively involved in campus organizations, serving as a
+                Secretary and Student Human Resources Development staff in UKM
+                Taekwondo Universitas Brawijaya.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;

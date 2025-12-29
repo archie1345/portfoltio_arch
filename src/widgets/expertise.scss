@@ -1,0 +1,27 @@
+@import '../variables/variables.scss';
+
+.expertise-section {
+  padding-bottom: 100px;
+
+  .expertise-grid {
+    display: flex;
+    border-top: 1px solid $color-black;
+    
+    .expertise-col {
+      flex: 1;
+      text-align: center;
+      font-size: 60px;
+      font-weight: 700;
+      padding: 100px 20px;
+      border-right: 1px solid $color-black;
+
+      &:last-child { border-right: none; }
+    }
+  }
+  
+  .black-line-full {
+    width: 100%;
+    height: 1px;
+    background: $color-black;
+  }
+}
