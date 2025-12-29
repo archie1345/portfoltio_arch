@@ -6,77 +6,80 @@ import './about.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const splitText = (text) =>
+const About = () => {
+  const sectionRef = useRef(null);
+  const boxRef = useRef(null);
+  const contentRef = useRef(null);
+  const titleRef = useRef(null);
+
+  const splitText = (text) =>
   text.split('').map((char, i) => (
     <span key={i} className="about-letter">
       {char === ' ' ? '\u00A0' : char}
     </span>
   ));
 
-const About = () => {
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const boxRef = useRef(null);
-  const contentRef = useRef(null);
-
 
   useGSAP(() => {
-  const letters = titleRef.current.querySelectorAll('.about-letter');
+    const letters = titleRef.current.querySelectorAll('.about-letter');
 
-  gsap.set(letters, { y: 120, opacity: 0 });
-  gsap.set(titleRef.current, { opacity: 1 });
-  gsap.set(boxRef.current, { autoAlpha: 0, y: 80 });
-  gsap.set(contentRef.current, { opacity: 0, y: 20 });
+    gsap.set(letters, { y: 120, opacity: 0 });
+    gsap.set(titleRef.current, { opacity: 1 });
+    gsap.set(boxRef.current, { autoAlpha: 0, y: 80 });
+    gsap.set(contentRef.current, { opacity: 0, y: 20 });
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: sectionRef.current,
-      start: 'top top',
-      end: '+=400%',
-      scrub: 1,
-      pin: true,
-    },
-  });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        id: 'about',
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: '+=300%',
+        scrub: 1,
+        pin: true,
+        markers: true
+      },
+    });
 
-  tl.to(letters, {
-    y: 0,
-    opacity: 1,
-    stagger: 0.06,
-    ease: 'power3.out',
-    duration: 1.2,
-  })
+    tl.to(letters, {
+      y: 0,
+      opacity: 1,
+      stagger: 0.06,
+      ease: 'power3.out',
+      duration:.5,
+    })
 
-  .to({}, { duration: 0.8 })
+    .to({}, { duration: .5 })
 
-  .to(titleRef.current, {
-    opacity: 0,
-    y: -60,
-    duration: 1,
-    ease: 'power2.inOut',
-  })
+    .to(letters, {
+      opacity: 0,
+      y: -120,
+      duration: .5,
+      ease: 'power3.out',
+      stagger: 0.06,
+    })
 
-  .to(boxRef.current, {
-    autoAlpha: 1,
-    y: 0,
-    duration: 1.4,
-    ease: 'power3.out',
-  })
+    .to(boxRef.current, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.3,
+      ease: 'power3.out',
+    })
 
-  .to(contentRef.current, {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    ease: 'power2.out',
-  }, '-=0.6')
+    .to(contentRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: .7,
+      ease: 'power2.out',
+    }, '-=0.6')
 
-  .to({}, { duration: 1.5 })
+    .to({}, { duration: 3 })
 
-  .to(boxRef.current, {
-    autoAlpha: 0,
-    y: -80,
-    duration: 1.2,
-    ease: 'power2.inOut',
-  });
+    .to(boxRef.current, {
+      autoAlpha: 0,
+      y: -120,
+      duration: .5,
+      ease: 'power2.out',
+    });
 
 }, { scope: sectionRef });
 
@@ -98,11 +101,10 @@ const About = () => {
               />
             </div>
 
-            {/* CENTER — MAIN BIO */}
             <div className="about-text-main">
               <p>
-                <strong>Hello</strong>, I’m Archie Saskara!<br />
-                I’m a <strong>Web and Multiplatform Developer</strong> and an
+                <strong>Hello</strong>, I'm Archie Saskara!<br />
+                I'm a <strong>Web and Multiplatform Developer</strong> and an
                 <strong> Information Systems student</strong> from Indonesia,
                 currently living in Kota Malang.
               </p>
@@ -110,13 +112,13 @@ const About = () => {
               <p>
                 I enjoy building applications for the web and across platforms,
                 working mainly with <strong>React (Vite), Flutter, Firebase,
-                and MongoDB</strong>. I’m especially interested in turning ideas
+                and MongoDB</strong>. I'm especially interested in turning ideas
                 into functional products through clean structure, clear logic,
                 and thoughtful user experience.
               </p>
 
               <p>
-                I’m currently pursuing a <strong>Bachelor’s degree (S1)</strong>
+                I'm currently pursuing a <strong>Bachelor's degree (S1)</strong>
                 in Information Systems at Brawijaya University, Faculty of
                 Computer Science, in the International Class.
               </p>
@@ -131,7 +133,7 @@ const About = () => {
               </p>
 
               <p>
-                Outside of coding, I’m a <strong>Taekwondo athlete</strong> and
+                Outside of coding, I'm a <strong>Taekwondo athlete</strong> and
                 actively involved in campus organizations, serving as a
                 Secretary and Student Human Resources Development staff in UKM
                 Taekwondo Universitas Brawijaya.

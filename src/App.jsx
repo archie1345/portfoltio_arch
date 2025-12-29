@@ -25,11 +25,13 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Hero />
-      <About />
-      <Works />
-      <Expertise />
-      <Contact />
+      <div id='page-section'>
+        <Hero />
+        <About />
+        <Works />
+        <Expertise />
+        <Contact />
+      </div>
     </div>
   );
 };

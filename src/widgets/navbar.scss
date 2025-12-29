@@ -5,9 +5,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 140px;
   opacity: 0;
-  padding: 0 50px;
+  padding: 1rem 3rem;
   z-index: 9999;
   box-sizing: border-box;
   color: $color-white;
@@ -34,10 +33,10 @@
     font-size: 24px;
     text-transform: uppercase;
     text-decoration: underline;
-    gap: 40px;
+    gap: 6rem;
     
 
-    a {
+    button {
       color: inherit;
       text-decoration: inherit;
       font-weight: 100;
