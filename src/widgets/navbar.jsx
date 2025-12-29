@@ -47,7 +47,7 @@ const Navbar = forwardRef((props, ref) => {
   };
 
   const scrollToTop = () => {
-    transitionScroll(1); // 👈 safe "top"
+    transitionScroll(1);
   };
 
   return (
