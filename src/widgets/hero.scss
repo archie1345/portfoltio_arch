@@ -1,18 +1,27 @@
 @import '../variables/variables.scss';
 
 .hero {
-  padding-top: 10vh;
-  min-height: 100vh;
+  padding: 8vh 0;
+  min-height: 100dvh;
   position: relative;
   width: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width:1024px) {
+    min-height: auto;
+  }
+
+  
 
   &__wrapper {
-    max-width: 1800px;
-    margin: 0 auto;
-    padding: 0 3rem;
-    position: relative;
-    height: 100%;
+    width: 100%;
+    padding: clamp(1rem, 5vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
   &-title {
@@ -47,7 +56,7 @@
           bottom: 0;
           right: 1vh; 
           transform: translateX(100%);
-          font-size: 1.5vh;
+          font-size: clamp(12px, 1.2vw, 16px);
           font-family: $font-mono;
           font-weight: 100;
           letter-spacing: 0.5em;
@@ -55,12 +64,24 @@
           white-space: nowrap;
           transition: opacity 0.8s ease 1s;
           
-          @media (max-width: 1200px) { display: none; }
+          @media (max-width: 768px) { display: none; }
+      }
+
+        &-additional {
+          transform: translateX(100%);
+          font-size: clamp(12px, 1.5vw, 16px);
+          font-family: $font-mono;
+          font-weight: 100;
+          letter-spacing: 0.5rem;
+          opacity: 0;
+          white-space: nowrap;
+          transition: opacity 0.8s ease 1s;
+          margin-top: 1vh;
       }
     }
   }
 
-  .hero-letter {
+  &-letter {
     font-size: 9vw;
     font-weight: 700;
     letter-spacing: -0.04;
@@ -71,7 +92,7 @@
     will-change: transform;
 
     @media (max-width: 768px) {
-      font-size: 16vw; 
+      font-size: 20vw; 
     }
   }
 
@@ -79,7 +100,7 @@
       display: flex;
       justify-content: center;
       position: relative;
-      margin-top: -30px;
+      margin-top: -2vh;
       z-index: 1;
       overflow: hidden;
   }
@@ -102,7 +123,7 @@
   &-gray-box {
       position: absolute;
       top: 30%;
-      width: 40vw;
+      width: 100%;
       bottom: 0;
       min-height: 200px; 
       background-color: #F3F3F3; 
@@ -114,51 +135,55 @@
       will-change: transform;
   }
 
-  // change maybe needed
   &-taglines {
-      position: relative;
-      align-self: flex-end;
-      padding-right: 4vh;
-      padding-bottom: 2vh;
-      text-align: left;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      z-index: 3;
-      max-width: 40vw;
-      
-      .overflow-line { 
-        overflow: hidden;
-        line-height: 1.1;
-        white-space: nowrap;
-      }
-      span {
-          display: inline-block;
-          font-size: 1vw;
-          padding-left: 0.4vw;
-          padding-bottom: 0.3vh;
-          transform: translateY(110%);
-          transition: transform 0.8s ease 0.9s;
-          will-change: transform;
-      }
-      
-      @media (max-width: 1024px) { display: none; } 
+    position: relative;
+    align-self: flex-end;
+    padding-right: 4vh;
+    padding-bottom: 2vh;
+    text-align: left;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    z-index: 3;
+    max-width: 40vw;
+    
+    .overflow-line { 
+      overflow: hidden;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    span {
+      display: inline-block;
+      font-size: clamp(12px, 1.5vw, 24px);
+      padding-left: 0.4vw;
+      padding-bottom: 0.3vh;
+      transform: translateY(110%);
+      transition: transform 0.8s ease 0.9s;
+      will-change: transform;
+      @media (max-width: 768px) { padding: 0; } 
+    }
+    
   }
 
   &-description-centered {
   display: flex;
   justify-content: center;
-  margin-top: 4vh;
+  margin-top: 2vh;  
   width: 100%;
   z-index: 2;
+  position: relative;
 
   .overflow-line {
     overflow: hidden;
     text-align: center;
+
+    @media (min-width: 1024px) {
+    white-space: nowrap;
   }
+}
 
   p {
     margin: 0;
-    font-size: clamp(24px, 1vw, 18px);
+    font-size: clamp(12px, 2vw, 24px);
     line-height: 1.4;
     max-width: 60ch;
     text-align: center;
@@ -166,6 +191,7 @@
     transition: transform 0.8s ease 1s;
     will-change: transform;
     font-weight: 100;
+    color: $color-black;
   }
 }
 
@@ -175,12 +201,15 @@
     opacity: 0; 
     transition: opacity 1s ease 0.5s;
     margin-right: 5vw;
+    @media (max-width: 768px) {
+      margin-right: 0;
+    }
 
     &__img {
       width: 15vw; 
-      min-width: 300px;
+      min-width: 150px;
       height: 20vw;
-      min-height: 400px;
+      min-height: 250px;
       overflow: hidden;
       filter: grayscale(100%);
       
@@ -194,13 +223,19 @@
     }
   }
 
-  .hero-bottom-row {
+  &-bottom-row {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     flex-direction: column;
-    margin-top: 5vh;
-    padding-bottom: 50px;
+    margin-top: 2vh;
+
+    @media (max-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      // gap: 5vw;
+      margin-top: 4vh;
+    }
   }
 
   &-recent{
@@ -215,17 +250,23 @@
     display: flex;
     flex-direction: column;
     font-family: $font-mono;
-    font-size: 14px;
-    gap: 10px;
+    font-size: .8rem;
     opacity: 0;
     transform: translateY(20px);
     transition: all 1s ease 1.2s;
+    @media (max-width: 768px) {
+      font-size: 2vw;
+    }
 
     span:last-child {
       font-family: $font-main;
-      font-size: 32px;
+      font-size: 1.6rem;
       font-weight: 400;
       text-transform: uppercase;
+
+      @media (max-width:768px) {
+        font-size: 4vw;        
+      }
     }
   }
 }

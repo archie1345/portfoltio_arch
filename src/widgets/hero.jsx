@@ -24,6 +24,15 @@ const Hero = () => {
     ));
   };
 
+  const additionalTitle = () => {
+    if (window.innerWidth <= 768) {
+    return (
+      <div className="hero-word">
+        <span className="hero-word-additional">BASED IN INDONESIA</span>
+      </div>
+      );
+    };
+  };
   return (
     <section className="hero">
       <div className="hero__wrapper">
@@ -33,8 +42,9 @@ const Hero = () => {
             <span className="hero-word-text">{wordAnimation('SOFTWARE', 0)}</span>
           </div>
           <div className="hero-word">
-            <span className="hero-word-text">{wordAnimation('DEVELOPER', 0.4)}</span>
+            <span className="hero-word-text">{wordAnimation('BUILDER', 0.4)}</span>
           </div>
+          {additionalTitle()}
         </h1>
 
         <div className="hero-main-content">
@@ -43,8 +53,8 @@ const Hero = () => {
             <div className="hero-gray-box"></div>
 
             <div className="hero-taglines">
-              <div className="overflow-line"><span>/ MULTIPLATFORM DEVELOPER</span></div>
-              <div className="overflow-line"><span>/ WEB DEVELOPER</span></div>
+              <div className="overflow-line"><span>/ PRODUCT-FOCUSED</span></div>
+              <div className="overflow-line"><span>/ ITERATIVE DEVELOPMENT</span></div>
             </div>
 
             <div className="hero-designer">
@@ -56,7 +66,9 @@ const Hero = () => {
         </div>
         <div className="hero-description-centered">
           <div className="overflow-line">
-            <p>ASPIRING WEB AND MULTIPLATFORM DEVELOPER BUILDING<br></br>APPLICATIONS WITH MODERN TECHNOLOGY</p>
+            <p>I BUILD CLEAN, FUNCTIONAL WEB AND CROSS-PLATFORM
+              <br></br>
+              APPLICATIONS THROUGH ITERATION AND PROBLEM-SOLVING</p>
           </div>
         </div>
 

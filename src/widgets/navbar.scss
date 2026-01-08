@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
   opacity: 0;
-  padding: 1rem 3rem;
+  padding: .5rem 3rem;
   z-index: 9999;
   box-sizing: border-box;
   color: $color-white;
@@ -17,23 +17,81 @@
   font-family: "Antonio", sans-serif;
   transition: height 0.8s ease, padding 0.8s ease, opacity 0.8s ease;
 
+  @media (max-width: 768px) {
+    padding: .5rem 2rem;
+    grid-template-columns: 1fr auto;
+  }
+
+  .menu-btn {
+    display: none;
+    justify-self: end;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+    
+    span {
+      position: relative;
+      width: 26px;
+      height: 2px;
+      background: $color-white;
+      display: block;
+      mix-blend-mode: normal;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &.open {
+      span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+        transform-origin: center;
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+        transform-origin: center;
+      }
+    }
+
+
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  
 
   .logo {
     justify-self: start;
     display: flex;
     flex-direction: column;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 1.5rem;
     line-height: 1;
     text-transform: uppercase;
+    padding-right: 2vw;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   .links {
     display: flex;
-    font-size: 24px;
+    font-size:1.5rem;
     text-transform: uppercase;
     text-decoration: underline;
-    gap: 6rem;
+    gap:  6rem;
+
+    @media (max-width:768px) {
+      display: none;      
+    }
     
 
     button {
@@ -76,3 +134,39 @@
     }
   }
 }
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: $color-black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 9998;
+    isolation: isolate;
+
+    button {
+      font-family: "Antonio", sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      background: transparent;
+      border: 0;
+      color: $color-white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    &.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }

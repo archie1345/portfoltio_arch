@@ -1,27 +1,71 @@
 @import '../variables/variables.scss';
 
-.contact-section {
-  padding: 100px 50px;
-  padding-bottom: 50px;
-  min-height: 80vh; // Ensure it takes up space
+.contact {
+  height: 100vh;
+  width: 100%;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .contact-headline {
-    font-size: 100px; // Large headline
+  
+
+  &__wrapper {
+    width: 100%;
+    padding: clamp(1rem, 5vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  &-title {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15vw;
+    font-weight: 700;
+    z-index: 5;
+    pointer-events: none;
+    text-align: center;
+    line-height: 1;
+
+    .line {
+      display: block;
+    }
+  }
+
+  &-letter {
+    display: inline-block;
+  }
+
+  &-headline {
+    font-size: 100px;
     text-align: center;
     margin-bottom: 100px;
     font-weight: 700;
     text-transform: uppercase;
   }
 
-  .contact-form {
-    max-width: 800px;
-    margin: 0 auto;
+  &-form {
+    width: 80%;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    
+    
+    @media (max-width: 768px) {
+      width: 100%;
+    }
 
     .input-group {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -40,7 +84,7 @@
         border: none;
         border-bottom: 1px solid $color-black;
         font-family: $font-main;
-        font-size: 32px;
+        font-size: 16px;
         text-align: center;
         outline: none;
         background: transparent;
@@ -54,13 +98,13 @@
 
     .submit-btn {
       font-family: $font-main;
-      font-size: 64px;
+      color: $color-black;
+      font-size: 32px;
       background: none;
       border: none;
       text-decoration: underline;
       text-transform: uppercase;
       cursor: pointer;
-      margin-top: 50px;
       transition: opacity 0.3s;
 
       &:hover {
@@ -69,32 +113,5 @@
     }
   }
 
-  .footer-info {
-    margin-top: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
-
-    .footer-contact h2 {
-      font-size: 64px;
-      margin: 0;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .footer-socials {
-      margin-top: 30px;
-      display: flex;
-      gap: 30px;
-      font-size: 32px;
-      text-decoration: underline;
-
-      a {
-        color: $color-black;
-        text-decoration: inherit;
-        text-transform: uppercase;
-      }
-    }
-  }
+  
 }

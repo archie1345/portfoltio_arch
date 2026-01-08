@@ -6,7 +6,14 @@
   height: 100vh;
   background: $color-white;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 100dvh;
+  
+  @media (max-width: 1024px) {
+    height: auto;
+    min-height: auto;
+    // padding-top: 3rem;
+    // padding-bottom: 4rem;
+  }
 
   &-title {
     position: absolute;
@@ -17,6 +24,15 @@
     font-size: 15vw;
     font-weight: 700;
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      position: relative;
+      inset: unset;
+      justify-content: center;
+      align-items: flex-start;
+      font-size: 18vw;
+      margin: 0 2rem;
+    }
   }
 
   &-letter {
@@ -32,28 +48,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 1024px) {
+      position: relative;
+      inset: unset;
+    }
   }
 
   &-content-inner {
     width: 100%;
     max-width: 1600px;
-    padding: 80px 100px;
+    padding: 4vw 8vw;
   }
 
   &-grid {
     display: grid;
-    grid-template-columns: 420px 1.2fr 1fr;
-    gap: 80px;
+    grid-template-columns: 280px 1.4fr 1fr;
+    gap: clamp(32px, 5vw, 80px);
     align-items: start;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 
-  &-image-col img {
-    width: 100%;
-    max-width: 400px;
-    filter: grayscale(100%);
-    object-fit: cover;
+  &-image-col {
+    display: flex;
+    justify-content: center;
+  
+    img {
+      width: 80%;
+      max-width: 400px;
+      aspect-ratio: 2/3 ;
+      filter: grayscale(100%);
+      object-fit: cover;
+      @media (max-width: 768px) {
+        max-width: 200px;
+      }
+    }
   }
 
+  
   &-text-main {
     font-size: 18px;
     line-height: 1.7;

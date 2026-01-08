@@ -16,14 +16,15 @@ body {
   &.loaded {
     opacity: 1;
     .hero-letter { transform: translateY(0); }
+    .hero-title .hero-word-additional { opacity: 1; transform: translateY(0); }
     .hero-title .hero-word:last-child::after { opacity: 1; transform: translateY(0); }
     .hero-designer { opacity: 1; }
     .hero-designer__img img { transform: scale(1); }
-    .hero-designer__descr span { transform: translateY(0); }
+    .hero-description-centered p{ transform: translateY(0); }
     .hero-gray-box { opacity: 1; transform: scaleY(1); }
     .hero-taglines span { transform: translateY(0); }
     .hero-recent, .hero-collab { opacity: 1; transform: translateY(0); }
-    .nav {opacity: 1;height: 100px, padding 0 50px;}
+    .nav {opacity: 1;}
   }
 }
 
@@ -33,4 +34,13 @@ body {
   text-align: center;
   margin: 0.5em 0;
   line-height: 0.8;
+}
+
+.scroll-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
 }

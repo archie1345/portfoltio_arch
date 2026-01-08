@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './about.scss';
+import archieImage from '../assets/archie.JPG';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,64 +23,101 @@ const About = () => {
 
   useGSAP(() => {
     const letters = titleRef.current.querySelectorAll('.about-letter');
+    let mm = gsap.matchMedia();
 
     gsap.set(letters, { y: 120, opacity: 0 });
     gsap.set(titleRef.current, { opacity: 1 });
     gsap.set(boxRef.current, { autoAlpha: 0, y: 80 });
     gsap.set(contentRef.current, { opacity: 0, y: 20 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        id: 'about',
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: '+=300%',
-        scrub: 1,
-        pin: true,
-        markers: true
-      },
+    mm.add('(min-width: 1024px)', () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          id: 'about',
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '+=300%',
+          scrub: 1,
+          pin: true,
+          
+        },
+      });
+  
+      tl.to(letters, {
+        y: 0,
+        opacity: 1,
+        stagger: 0.06,
+        ease: 'power3.out',
+        duration:.5,
+      })
+      .addLabel('titleDone')
+      .to({}, { duration: .5 })
+  
+      .to(letters, {
+        opacity: 0,
+        y: -120,
+        duration: .5,
+        ease: 'power3.out',
+        stagger: 0.06,
+      })
+  
+      .to(boxRef.current, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.3,
+        ease: 'power3.out',
+      })
+  
+      .to(contentRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: .7,
+        ease: 'power2.out',
+      }, '-=0.6')
+  
+      .to({}, { duration: 3 })
+  
+      .to(boxRef.current, {
+        autoAlpha: 0,
+        y: -120,
+        duration: .5,
+        ease: 'power2.out',
+      });
     });
 
-    tl.to(letters, {
-      y: 0,
-      opacity: 1,
-      stagger: 0.06,
-      ease: 'power3.out',
-      duration:.5,
-    })
+    mm.add("(max-width: 1024px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          id: "about",
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom top",
+          scrub: false,
+        }
+      });
 
-    .to({}, { duration: .5 })
-
-    .to(letters, {
-      opacity: 0,
-      y: -120,
-      duration: .5,
-      ease: 'power3.out',
-      stagger: 0.06,
-    })
-
-    .to(boxRef.current, {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.3,
-      ease: 'power3.out',
-    })
-
-    .to(contentRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: .7,
-      ease: 'power2.out',
-    }, '-=0.6')
-
-    .to({}, { duration: 3 })
-
-    .to(boxRef.current, {
-      autoAlpha: 0,
-      y: -120,
-      duration: .5,
-      ease: 'power2.out',
+      tl
+      .to(letters, { 
+        y: 0, 
+        opacity: 1, 
+        stagger: 0.03, 
+        duration: 1,
+        ease: 'power3.out' 
+      })
+      .addLabel('titleDone')
+      .to(boxRef.current, { 
+        autoAlpha: 1, 
+        y: 0, 
+        duration: 0.5 
+      })
+      .to(contentRef.current, { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.5 
+      }, '-=0.3');
     });
+
+    return () => mm.revert();
 
 }, { scope: sectionRef });
 
@@ -96,7 +134,7 @@ const About = () => {
 
             <div className="about-image-col">
               <img
-                src="/your-real-image.jpg"
+                src={archieImage}
                 alt="Portrait"
               />
             </div>
@@ -108,7 +146,8 @@ const About = () => {
                 <strong> Information Systems student</strong> from Indonesia,
                 currently living in Kota Malang.
               </p>
-
+            </div>
+            <div className="about-text-main">
               <p>
                 I enjoy building applications for the web and across platforms,
                 working mainly with <strong>React (Vite), Flutter, Firebase,
@@ -116,7 +155,8 @@ const About = () => {
                 into functional products through clean structure, clear logic,
                 and thoughtful user experience.
               </p>
-
+            </div>
+            <div className="about-text-main">
               <p>
                 I'm currently pursuing a <strong>Bachelor's degree (S1)</strong>
                 in Information Systems at Brawijaya University, Faculty of
