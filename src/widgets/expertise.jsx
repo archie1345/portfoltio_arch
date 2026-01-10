@@ -3,11 +3,18 @@ import './expertise.scss';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import brush from '../assets/brush.svg';
+// import brush from '../assets/brush.svg?url';
+// import web from '../assets/web.svg?url';
+// import dev from '../assets/dev.svg?url';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Expertise = () => {
+  const brush = new URL('../assets/brush.svg', import.meta.url).href;
+  const web   = new URL('../assets/web.svg', import.meta.url).href;
+  const dev   = new URL('../assets/dev.svg', import.meta.url).href;
+  console.log(brush, web, dev);
+
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const contentRef = useRef(null);
@@ -115,6 +122,7 @@ const Expertise = () => {
       });
     });
   }, { scope: sectionRef });
+  
 
   return (
     <section className="expertise" ref={sectionRef}>
@@ -127,13 +135,14 @@ const Expertise = () => {
         <div className="expertise-grid">
           {[
             ['UI / UX DESIGN', brush, 'Wireframes, user flows, usability testing, interaction design.'],
-            ['WEB DESIGN', 'web', 'Responsive layouts, design systems, visual identity.'],
-            ['DEVELOPMENT', 'dev', 'React, GSAP animations, performance optimization.'],
+            ['WEB DESIGN', web, 'Responsive layouts, design systems, visual identity.'],
+            ['DEVELOPMENT', dev, 'React, GSAP animations, performance optimization.'],
           ].map(([front, bg, back]) => (
             <div className="flip-card" key={front}>
               <div className="flip-card-inner">
                 <div className="flip-card-front" style={{ '--bg-image': `url(${bg})` }}>{front}</div>
                 <div className="flip-card-back">{back}</div>
+                {console.log(bg)}
               </div>
             </div>
           ))}

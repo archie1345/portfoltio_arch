@@ -11,4 +11,8 @@ export default defineConfig({
     }),
   ],
   base: '/portfoltio_arch/',
+  build: {
+    outDir: 'docs',
+    assetsInlineLimit: 0
+  },
 })

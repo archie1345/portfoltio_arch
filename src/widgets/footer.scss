@@ -1,12 +1,13 @@
+@import '../variables/variables.scss';
+
 .footer {
-  margin-top: 240px;
-  padding-bottom: 80px;
+  margin-top: 10rem;
   display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  gap: 48px;
-  
+  // gap: 4rem;  
+  padding: 2rem 0;
 
   &-contact {
     display: flex;
@@ -14,7 +15,7 @@
     gap: 6px;
 
     h2 {
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(30px, 3vw, 60px);
       font-weight: 400;
       letter-spacing: -0.01em;
       margin: 0;
@@ -47,11 +48,27 @@
   }
 
   &-name {
-    margin-top: 120px;
-    font-size: clamp(120px, 18vw, 260px);
+    font-size: 15vw;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 700;
-    line-height: 0.85;
-    letter-spacing: -0.06em;
-    text-transform: uppercase;
-    }   
+    z-index: 2;
+
+    @media (max-width: 1024px) {
+      position: relative;
+      inset: unset;
+      justify-content: center;
+      align-items: flex-start;
+      font-size: 15vw;
+      margin: 0 2rem;
+    }
+  }
+
+  &-letter {
+    display: inline-block;
+    color: $color-black;
+    will-change: transform, opacity;
+  }
 }
