@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-main: 'Antonio', sans-serif;
+  --font-mono: 'Spline Sans Mono', monospace;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-gray: #f1f1f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-white);
+  font-family: var(--font-main);
+  color: var(--color-black);
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+.section-title-large {
+  font-size: 15vw;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
